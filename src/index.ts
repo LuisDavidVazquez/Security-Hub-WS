@@ -36,7 +36,7 @@ applyMiddleware(app);
 
 // Configurar los sockets
 const configureSockets = (io: Server) => {
-  io.use(authenticateSocketMiddleware); 
+  //io.use(authenticateSocketMiddleware); 
 
   io.on("connection", (socket) => {
     console.log("A user connected");
