@@ -21,13 +21,12 @@ const optionsHTTPS = {
 const server = https.createServer(optionsHTTPS, app);
 const io = new Server(server, {
   cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
+    origin: "*"
   },
 });
 
-applyMiddleware(app); // Configurar middleware
-configureSockets(io); // Configurar sockets
+applyMiddleware(app); 
+configureSockets(io); 
 
 const port = process.env.SOCKET_SERVER_PORT;  
 
