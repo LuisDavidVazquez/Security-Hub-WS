@@ -5,13 +5,20 @@ import cors from "cors";
 import { applyMiddleware } from "./server/middleware";
 import { configureSockets } from "./server/sockets";
 import dotenv from "dotenv";
+import fs from "fs";
+import https from "https";
 
 dotenv.config();
 
 const app = express();
 app.use(cors());
 
-const server = http.createServer(app);
+const optionsHTTPS = {
+  key: fs.readFileSync(String(process.env.KEY)),
+  cert: fs.readFileSync(String(process.env.CERTIFICATE)),
+}
+
+const server = https.createServer(optionsHTTPS, app);
 const io = new Server(server, {
   cors: {
     origin: "*",
